@@ -1,4 +1,4 @@
-# Projeto: ##Usar API do google/gmail para extrair dados de emails selecionados do gmail pessoal e armazená-las dentro de uma várial
+# Projeto: Usar API do google/gmail para extrair dados de emails selecionados do gmail pessoal e armazená-las dentro de uma várial
 
 
 [] - Fazer as pré-configurações do projetos.
@@ -11,7 +11,7 @@
 
 --------------------------------------------------------------------------------------
 
-# Project: ## Use google / gmail API to extract selected email data from personal gmail and store it within a range
+# Project: Use google / gmail API to extract selected email data from personal gmail and store it within a range
 
 
 [] - Make the project presets.
