@@ -1,12 +1,11 @@
 # Projeto: Usar API do google/gmail para extrair dados de emails selecionados do gmail pessoal e armazená-las dentro de uma váriavel
 
-
-[] - Fazer as pré-configurações do projetos.
-[] - Obter Acesso à API dentro do Projeto.
-[] - Consumir à API e fazer as configurações restantes.
-[] - Fazer a conexão entre API e o gmail pessoal.
-[] - Extração de dados dos email selecionados.
-[] - Armazenar os dados em uma variável.
+![] - Fazer as pré-configurações do projetos.
+![] - Obter Acesso à API dentro do Projeto.
+![] - Consumir à API e fazer as configurações restantes.
+![] - Fazer a conexão entre API e o gmail pessoal.
+![] - Extração de dados dos email selecionados.
+![] - Armazenar os dados em uma variável.
 
 
 --------------------------------------------------------------------------------------
