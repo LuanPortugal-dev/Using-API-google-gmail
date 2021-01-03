@@ -10,7 +10,7 @@ const puppeteer = require('puppeteer');
   await page.setViewport({ width: 1280, height: 800})
   await page.goto('https://gmail.com');
    
-  // const navigationPromise = page.waitForNavigation()
+  const navigationPromise = page.waitForNavigation()
 
 
   //-  Acessa a página de login
@@ -18,8 +18,9 @@ const puppeteer = require('puppeteer');
   await page.type('input[type="email"]', process.env.GMAIL_EMAIL)
   await page.click('button[type="button"]')
 
-  console.log("cheguei até aqui ")
+  await navigationPromise
 
+  
   await page.waitForSelector('[name="password"]')
   await page.type('[name="password"]', process.env.GMAIL_SENHA)
 
