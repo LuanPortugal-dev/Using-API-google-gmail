@@ -1,14 +1,13 @@
 import email
 import imaplib
 import emailchecker
+
 import re
 import os
 
-from pathlib import Path
-env_path = Path('.env')
 
 from dotenv import load_dotenv
-load_dotenv(dotenv_path=env_path)
+load_dotenv()
 
 EMAIL = os.getenv("GMAIL_EMAIL")
 PASSWORD = os.getenv("GMAIL_PASSWORD")
@@ -52,21 +51,30 @@ def read_email_from_gmail():
                     mail_content = message.get_payload()
 
 
+                
+                reg = re.compile(r'.*Cliente\s+(.*)\s+solicitou\s+.*\s+codigo\s+(\d+)\s+cpf\s+(\d\d\d.\d\d\d.\d\d\d-\d\d)', re.IGNORECASE)
+                res = reg.search(mail_content)
+                print("\n\n-----------------------------------------------------------------------------------")
+                if res:
+                    print("Texto no padrão")
+                    nome = res.group(1)
+                    codigo = res.group(2)
+                    cpf = res.group(3)
+                    print(nome, codigo, cpf)
+                else:
+                    print("Texto fora do padrão")
+                    
 
-                nome = 'Luan' 
-                codigo = '0000000'
-                cpf = '222222222'
-
-
+                
 
 
                 # Diz se é abertura ou transferência
-                if mail_subject == 'Abertura de conta cliente':
-                    print(f'{nome} cadastrado como Abertura, com código {codigo} e cpf {cpf}')
-                elif 'Transferencia de cliente' or 'Transferencia de clientes':
-                    print(f'{nome} cadastrado como transferência, com código {codigo} e cpf {cpf}')
-                else:
-                    print("Nenhum tipo de dado válido")        
+                #if mail_subject == 'Abertura de conta cliente':
+                    #print(f'{nome} cadastrado como Abertura, com código {codigo} e cpf {cpf}\n')
+                #elif 'Transferencia de cliente' or 'Transferencia de clientes':
+                    #print(f'{nome} cadastrado como transferência, com código {codigo} e cpf {cpf}\n')
+                #else:
+                    #print("Nenhum tipo de dado válido")        
 
 
                 #arquivo = open("./texto.txt", "a")
