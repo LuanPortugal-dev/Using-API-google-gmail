@@ -5,7 +5,7 @@
 <p>[x] - Consumir à API e fazer as configurações restantes.</p>
 <p>[x] - Fazer a conexão entre API e o gmail pessoal.</p>
 <p>[x] - Extração de dados dos email selecionados.</p>
-<p>[ ] - Armazenar os dados em uma variável.</p>
+<p>[x] - Armazenar os dados em uma variável.</p>
 
 
 --------------------------------------------------------------------------------------
@@ -18,4 +18,4 @@
 <p>[x] - Consume the API and make the remaining settings.</p>
 <p>[x] - Make the connection between API and personal gmail.</p>
 <p>[x] - Extraction of data from selected emails.</p>
-<p>[ ] - Store the data in a variable.</p>
+<p>[x] - Store the data in a variable.</p>
