@@ -20,8 +20,6 @@ PASSWORD = os.getenv("GMAIL_PASSWORD")
 SERVER = 'imap.gmail.com'
 
 
-
-
 def writeFileSendEmail(mensagem, typeMessage):
     try:
         global logfile
@@ -80,7 +78,7 @@ def read_email_from_gmail():
                     else:
                         mail_content = message.get_payload()
                         
-                        
+
                     mensagem = mail_content
                     
                     # verifica se o cliente é transferencia 
