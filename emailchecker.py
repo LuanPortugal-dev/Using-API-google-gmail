@@ -80,10 +80,8 @@ def read_email_from_gmail():
                     else:
                         mail_content = message.get_payload()
                         
-
+                        
                     mensagem = mail_content
-
-
                     
                     # verifica se o cliente é transferencia 
                     if mail_subject in ['Transferencia de cliente', 'Transferencia de clientes',
