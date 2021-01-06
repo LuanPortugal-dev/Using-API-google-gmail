@@ -7,16 +7,16 @@ import re
 import os
 
 
-from dotenv import load_dotenv
-load_dotenv()
+#from dotenv import load_dotenv
+#load_dotenv()
 
 from pathlib import Path
 
 logfile = Path("../arquivo.txt")
 
 
-EMAIL = os.getenv("GMAIL_EMAIL")
-PASSWORD = os.getenv("GMAIL_PASSWORD")
+EMAIL = 'luanportugal.profissional.tec@gmail.com'
+PASSWORD = 'imcwijfltzhqzmrg'
 SERVER = 'imap.gmail.com'
 
 
@@ -28,13 +28,7 @@ def writeFileSendEmail(mensagem, typeMessage):
         if res:
             nome = res.group(1)
             codigo = res.group(2)
-            cpf = res.group(3)
-            print("\n\n-----------------------------------------------------------------------------------")
-            print(f'O cliente {nome} foi cadastrado como {typeMessage}, com código {codigo} e cpf {cpf}\n')
-            with logfile.open("a") as arquivo:
-                arquivo.write(f"\n\n{typeMessage}-------------------------------------------------------------------\n")
-                arquivo.write(f'O cliente {nome} foi cadastrado como {typeMessage}, com código {codigo} e cpf {cpf}\n') 
-
+            cpf = res.group(3) 
             return True
     except:
         return False
