@@ -2,27 +2,55 @@ import email
 import imaplib
 import emailchecker
 import urllib.parse
-
 import re
 import os
-
-
-#from dotenv import load_dotenv
-#load_dotenv()
-
 from pathlib import Path
 
-logfile = Path("../arquivo.txt")
+
+import mysql.connector
+from mysql.connector import Error
 
 
-EMAIL = 'luanportugal.profissional.tec@gmail.com'
-PASSWORD = 'imcwijfltzhqzmrg'
+try:
+    mydb = mysql.connector.connect(
+            host='localhost',
+            user='root',
+            password='',
+            database='emailsclientes',        
+            )
+
+    inserir_dados = """INSERT INTO tb_clientes
+                (nome, codigo, cpf)
+            Values
+                (nome, codigo, cpf) 
+    """
+
+    cursor = mydb.cursor()
+    cursor.execute(inserir_dados)
+    mydb.commit()
+    cursor.close()
+except Error as erro:
+    print("Falha ao inserir dados: {}".format(erro))
+finally:
+    if (mydb.is_connected()):
+        cursor.close()
+        mydb.close()
+        print("Conexão realizada com sucesso")
+    
+
+from dotenv import load_dotenv
+env_path = Path('./.env')
+load_dotenv()
+
+
+
+EMAIL = os.getenv("GMAIL_LOGIN")
+PASSWORD = os.getenv("GMAIL_PASSWORD")
 SERVER = 'imap.gmail.com'
 
 
 def writeFileSendEmail(mensagem, typeMessage):
     try:
-        global logfile
         reg = re.compile(r'.*Cliente\s+(.*)\s+[abriu, solicitou]\s+.*\s+codigo\s+(\d+)\s+cpf\s+(\d\d\d.\d\d\d.\d\d\d-\d\d)', re.IGNORECASE | re.DOTALL)
         res = reg.search(mensagem)
         if res:
