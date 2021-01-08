@@ -6,8 +6,8 @@
 <p>[x] - Fazer a conexão entre API e o gmail pessoal.</p>
 <p>[x] - Extração de dados dos email selecionados.</p>
 <p>[x] - Armazenar os dados em uma variável.</p>
-<p>[ ] - Fazer a conexão com o banco de dados MySQL.</p>
-<p>[ ] - Salvar as informações no BD.</p>
+<p>[  ] - Fazer a conexão com o banco de dados MySQL.</p>
+<p>[  ] - Salvar as informações no BD.</p>
 
 
 --------------------------------------------------------------------------------------
@@ -21,5 +21,5 @@
 <p>[x] - Make the connection between API and personal gmail.</p>
 <p>[x] - Extraction of data from selected emails.</p>
 <p>[x] - Store the data in a variable.</p>
-<p>[ ] - Connect to the MySQL database.</p>
-<p>[ ] - Save the information to the database.</p>
+<p>[  ] - Connect to the MySQL database.</p>
+<p>[  ] - Save the information to the database.</p>
