@@ -1,42 +1,9 @@
 import email
 import imaplib
-import emailchecker
 import urllib.parse
 import re
 import os
 from pathlib import Path
-
-
-import mysql.connector
-from mysql.connector import Error
-
-
-try:
-    mydb = mysql.connector.connect(
-            host='localhost',
-            user='root',
-            password='',
-            database='emailsclientes',        
-            )
-
-    inserir_dados = """INSERT INTO tb_clientes
-                (nome, codigo, cpf)
-            Values
-                (nome, codigo, cpf) 
-    """
-
-    cursor = mydb.cursor()
-    cursor.execute(inserir_dados)
-    mydb.commit()
-    cursor.close()
-except Error as erro:
-    print("Falha ao inserir dados: {}".format(erro))
-finally:
-    if (mydb.is_connected()):
-        cursor.close()
-        mydb.close()
-        print("Conexão realizada com sucesso")
-    
 
 from dotenv import load_dotenv
 env_path = Path('./.env')
@@ -44,7 +11,7 @@ load_dotenv()
 
 
 
-EMAIL = os.getenv("GMAIL_LOGIN")
+EMAIL = os.getenv("GMAIL_EMAIL")
 PASSWORD = os.getenv("GMAIL_PASSWORD")
 SERVER = 'imap.gmail.com'
 
@@ -109,9 +76,7 @@ def read_email_from_gmail():
                         mensagem = mensagem.replace('=', '%')
                         mensagem = urllib.parse.unquote(mensagem)
                         writeFileSendEmail(mensagem, mail_subject)
+                        
     except:
         print("Erro")
-
-if __name__ == '__main__':
-    read_email_from_gmail()
 
