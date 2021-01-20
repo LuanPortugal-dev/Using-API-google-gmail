@@ -4,6 +4,10 @@ import urllib.parse
 import re
 import os
 from pathlib import Path
+import conexao
+
+
+logfile = Path("../arquivo.txt")
 
 from dotenv import load_dotenv
 env_path = Path('./.env')
@@ -16,18 +20,26 @@ PASSWORD = os.getenv("GMAIL_PASSWORD")
 SERVER = 'imap.gmail.com'
 
 
-def writeFileSendEmail(mensagem, typeMessage):
-    try:
-        reg = re.compile(r'.*Cliente\s+(.*)\s+[abriu, solicitou]\s+.*\s+codigo\s+(\d+)\s+cpf\s+(\d\d\d.\d\d\d.\d\d\d-\d\d)', re.IGNORECASE | re.DOTALL)
-        res = reg.search(mensagem)
+try:
+    def writeFileSendEmail(mensage, typeMessage):
+        reg = re.compile(r'.*Cliente\s+(.*)\s+abriu|solicitou\s+.*\s+codigo\s+(\d+)\s+cpf\s+(\d\d\d.\d\d\d.\d\d\d-\d\d)', re.IGNORECASE | re.DOTALL)
+        res = reg.search(mensage)
         if res:
             nome = res.group(1)
             codigo = res.group(2)
-            cpf = res.group(3) 
-            return True
-    except:
-        return False
+            cpf = res.group(3)
+            #print("\n\n-----------------------------------------------------------------------------------")
+            #print(f'O cliente {nome} foi cadastrado como {typeMessage}, com código {codigo} e cpf {cpf}\n')
 
+        return res.group(1), res.group(2), res.group(3)
+ 
+    nome, codigo, cpf = writeFileSendEmail('ABC', 'ABC')
+ 
+    conexao.con.inserir_dados = f'INSERT INTO (nome, codigo, cpf) VALUES ({nome}, {codigo}, {cpf})'
+
+except:
+    print('Error')
+    
 
 # Fazer a conexão com o servidor gmail, realizar o login e navegar a inbox.
 def read_email_from_gmail():
@@ -68,15 +80,21 @@ def read_email_from_gmail():
                         mail_content = message.get_payload()
                         
 
-                    mensagem = mail_content
+                    tipoDeDado = mail_subject
+                    mensage = mail_content
                     
+                    mensage = mensage.replace('=', '%')
+                    mensage = urllib.parse.unquote(mensage)
+
                     # verifica se o cliente é transferencia 
                     if mail_subject in ['Transferencia de cliente', 'Transferencia de clientes',
                         'Abertura de conta cliente']:
-                        mensagem = mensagem.replace('=', '%')
-                        mensagem = urllib.parse.unquote(mensagem)
-                        writeFileSendEmail(mensagem, mail_subject)
-                        
-    except:
-        print("Erro")
+                        mensage = mensage.replace('=', '%')
+                        mensage = urllib.parse.unquote(mensage)
+                        writeFileSendEmail(mensage, mail_subject)
 
+    except:
+        print("Error")
+
+if __name__ == '__main__':
+    read_email_from_gmail()
