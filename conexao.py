@@ -1,3 +1,5 @@
+import emailchecker
+
 from mysql.connector import connection
 from mysql.connector import Error
 
@@ -10,6 +12,8 @@ load_dotenv()
 
 senha = os.getenv("BD_PASSWORD")
 
+
+
 try:
     con = connection.MySQLConnection(
             host='localhost',
@@ -18,11 +22,7 @@ try:
             database='emailsclientes',        
             )
 
-    inserir_dados = """INSERT INTO tb_clientes
-                (nome, codigo, cpf, tipo)
-            VALUES
-                ( nome, codigo, cpf, tipo) 
-    """
+    inserir_dados = ''
 
     cursor = con.cursor()
     cursor.execute(inserir_dados)
