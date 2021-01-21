@@ -7,7 +7,7 @@
 <p>[x] - Extração de dados dos email selecionados.</p>
 <p>[x] - Armazenar os dados em uma variável.</p>
 <p>[x] - Fazer a conexão com o banco de dados MySQL.</p>
-<p>[  ] - Salvar as informações no BD.</p>
+<p>[x] - Salvar as informações no BD.</p>
 
 
 --------------------------------------------------------------------------------------
@@ -22,4 +22,4 @@
 <p>[x] - Extraction of data from selected emails.</p>
 <p>[x] - Store the data in a variable.</p>
 <p>[x] - Connect to the MySQL database.</p>
-<p>[  ] - Save the information to the database.</p>
+<p>[x] - Save the information to the database.</p>
