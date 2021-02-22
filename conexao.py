@@ -12,6 +12,38 @@ load_dotenv()
 # Buscando a senha dentro do .env
 senha = os.getenv("BD_PASSWORD")
 
+
+
+"""
+#libs para conectar no DB
+from sqlalchemy import create_engine, text
+import mysql.connector
+from mysql.connector import connection
+import pandas as pd
+
+#Conexão com o banco de dados
+con = connection.MySQLConnection(user='USERNAME_DO_LOGIN', password='SENHA_DO_LOGIN', host='LINK_DO_DB', database='NOME_DO_DB')
+#Conexão sendo usada na lib do pandas para conseguir a tabela direto como um dataframe
+
+df = pd.read_sql("SELECT * FROM table", con = con)
+#Usando conexão para criar um cursor, cursores são necessários para UPDATE E INSERT no DB
+
+cursor = con.cursor()
+#Query que será executada        
+
+query = INSERT INTO table (COL_1)
+           VALUES ('VALUE_1')
+
+cursor.execute(query) #Executando query
+con.commit()  #"Salvando" as alterações feitas no DB, COMMIT é sempre necessário!
+cursor.close() #Fechando cursor
+con.close()  #Fechando conexão com o DB
+
+"""
+
+
+
+
 # Função para receber as variaveis e salvá-las dentro do nosso banco de dados, na tabela tb_abertura
 def abertura(nomeAbertura, codigoAbertura, cpfAbertura):
     try:
